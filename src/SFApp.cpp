@@ -6,10 +6,10 @@ SFApp::SFApp(std::shared_ptr<SFWindow> window) : fire(0), is_running(true), sf_w
 
   app_box = make_shared<SFBoundingBox>(Vector2(canvas_w, canvas_h), canvas_w, canvas_h);
   player  = make_shared<SFAsset>(SFASSET_PLAYER, sf_window);
-  auto player_pos = Point2(canvas_w, 88.0f);
+  auto player_pos = Point2(canvas_w/1,11);
   player->SetPosition(player_pos);
 
-  const int number_of_aliens = 10;
+  const int number_of_aliens = 5;
   for(int i=0; i<number_of_aliens; i++) {
     // place an alien at width/number_of_aliens * i
     auto alien = make_shared<SFAsset>(SFASSET_ALIEN, sf_window);
@@ -17,7 +17,7 @@ SFApp::SFApp(std::shared_ptr<SFWindow> window) : fire(0), is_running(true), sf_w
     alien->SetPosition(pos);
     aliens.push_back(alien);
   }
-
+//auto wall =
   auto coin = make_shared<SFAsset>(SFASSET_COIN, sf_window);
   auto pos  = Point2((canvas_w/4), 100);
   coin->SetPosition(pos);
@@ -40,6 +40,12 @@ void SFApp::OnEvent(SFEvent& event) {
   case SFEVENT_UPDATE:
     OnUpdateWorld();
     OnRender();
+    break;
+  case SFEVENT_PLAYER_UP:
+    player->GoNorth();
+    break;
+  case SFEVENT_PLAYER_DOWN:
+    //player->GoSouth();
     break;
   case SFEVENT_PLAYER_LEFT:
     player->GoWest();
@@ -72,7 +78,7 @@ void SFApp::OnUpdateWorld() {
   }
 
   for(auto c: coins) {
-    c->GoNorth();
+    c->GoWest();
   }
 
   // Update enemy positions

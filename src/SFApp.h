@@ -25,7 +25,6 @@ public:
   int     OnExecute();
   void    OnUpdateWorld();
   void    OnRender();
-
   void    FireProjectile();
 private:
   SDL_Surface           * surface;
@@ -38,6 +37,7 @@ private:
   list<shared_ptr<SFAsset> > projectiles;
   list<shared_ptr<SFAsset> > aliens;
   list<shared_ptr<SFAsset> > coins;
+  list<shared_ptr<SFAsset> > wall;
 
   int fire;
 

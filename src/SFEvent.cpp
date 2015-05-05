@@ -16,7 +16,7 @@ SFEvent::SFEvent(const SDL_Event & event) {
     case SDLK_LEFT:
       code = SFEVENT_PLAYER_LEFT;
       break;
-    case SDLK_RIGHT:
+     case SDLK_RIGHT:
       code = SFEVENT_PLAYER_RIGHT;
       break;
     case SDLK_SPACE:
@@ -29,6 +29,12 @@ SFEvent::SFEvent(const SDL_Event & event) {
     break;
   default:
     code = SFEVENT_NULL;
+    break;
+  case SDLK_UP:
+    code = SFEVENT_PLAYER_UP;
+    break;
+  case SDLK_DOWN:
+    code = SFEVENT_PLAYER_DOWN;
     break;
   }
 }
